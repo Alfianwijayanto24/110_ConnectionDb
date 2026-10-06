@@ -10,27 +10,3 @@ app.use(
         extended: true,
     })
 );
-const pool = new Pool({
-    user: "postgres",
-    host: "localhost",
-    database: "Mahasiswa",
-    password: "Alfian2005",
-    port: 5432,
-});
-
-app.get('/', (req, res, next) => {
-    console.log("REST DATA :");
-    pool.query('Select * from biodata')
-        .then(testData => {
-            console.log(testData);
-            res.send(testData.rows);
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).send('Internal Server Error');
-    });
-})
-
-app.listen(port, () => {
-    console.log(`App running on port ${port}`)
-})
